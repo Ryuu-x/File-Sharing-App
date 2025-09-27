@@ -1,0 +1,158 @@
+:root{
+  --bg:#0f1724;
+  --card:#0b1220;
+  --accent:#6ee7b7;
+  --muted:#9aa4b2;
+  --surface:#0f1724;
+  --white:#ffffff;
+  --glass: rgba(255,255,255,0.04);
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #020617 0%, #071029 100%);
+  color:var(--white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:24px;
+}
+
+/* layout */
+.app-root{
+  min-height: calc(100vh - 56px);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.card{
+  margin:auto;
+  display:flex;
+  gap:20px;
+  width:100%;
+  max-width:1100px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius:12px;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+  padding:20px;
+  align-items:stretch;
+}
+
+/* left column */
+.card-left{
+  flex:1.1;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.title{
+  margin:0;
+  font-size:1.6rem;
+  letter-spacing:-0.4px;
+}
+.subtitle{
+  margin:0;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+/* dropzone */
+.dropzone{
+  margin-top:6px;
+  border: 2px dashed rgba(255,255,255,0.06);
+  border-radius:10px;
+  padding:26px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  cursor:pointer;
+  transition: all .18s ease;
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+}
+.dropzone:hover{ transform: translateY(-3px); border-color: rgba(110,231,183,0.12) }
+.dropzone.disabled{ opacity:0.8; cursor:not-allowed }
+.upload-ico{ color:var(--accent) }
+.drop-text strong{ display:block; font-size:1.05rem }
+.drop-text .muted{ color:var(--muted); font-size:0.88rem }
+
+/* actions */
+.actions-row{ display:flex; gap:10px; align-items:center; margin-top:6px }
+.btn{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.08);
+  color:var(--white);
+  padding:10px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+}
+.btn.primary{
+  background: linear-gradient(90deg,var(--accent), #34d399);
+  color:#042017;
+  border: none;
+  box-shadow: 0 6px 18px rgba(110,231,183,0.08);
+}
+.btn.ghost{ background: transparent }
+.btn.small{ padding:6px 8px; font-size:0.9rem }
+.btn.danger{ background:transparent; border-color:rgba(255,80,80,0.18); color:#ff7b7b }
+
+/* file info & progress */
+.file-info{
+  margin-top:12px;
+  background:var(--glass);
+  border-radius:8px;
+  padding:12px;
+}
+.file-name{ font-weight:700 }
+.file-meta{ color:var(--muted); font-size:0.9rem; margin-top:6px; display:flex; gap:8px; align-items:center }
+
+.progress-row{ margin-top:10px; display:flex; gap:8px; align-items:center }
+.spinner{
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,0.06);
+  border-top-color:var(--accent);
+  animation: spin 1s linear infinite;
+}
+.spinner.indeterminate{ border-left-color: transparent; border-right-color: transparent; }
+@keyframes spin{ to{ transform: rotate(360deg) } }
+.progress-text{ color:var(--muted); font-size:0.92rem }
+.idle-text{ color:var(--muted) }
+
+/* right column */
+.card-right{
+  width:380px;
+  max-width:40%;
+  min-width:260px;
+  padding:18px;
+  border-left:1px solid rgba(255,255,255,0.02);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:stretch;
+}
+.right-title{ margin:0; font-size:1.05rem }
+.empty{ display:flex; flex-direction:column; align-items:center; gap:8px; justify-content:center; color:var(--muted); padding:18px }
+.result{ display:flex; flex-direction:column; gap:12px }
+.download-link{
+  word-break:break-all;
+  color:var(--accent);
+  text-decoration: none;
+  font-weight:600;
+}
+.result-actions{ display:flex; gap:8px; flex-wrap:wrap }
+.share-note{ color:var(--muted); font-size:0.9rem }
+
+/* error & footer */
+.error{ color:#ffb4b4; background: rgba(255,0,0,0.03); padding:8px 10px; border-radius:8px; font-weight:600 }
+.footer{ text-align:center; color:var(--muted); font-size:0.9rem; padding:8px 0 }
+
+/* responsive */
+@media (max-width:900px){
+  .card{ flex-direction:column; padding:14px; width:100% }
+  .card-right{ max-width:100%; width:100% }
+}
