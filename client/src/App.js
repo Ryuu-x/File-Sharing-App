@@ -17,6 +17,8 @@ export default function App() {
     setError("");
     if (!f) return;
 
+    setResult("");
+
     // Prevent folder selections disguised as files
     if (f.webkitRelativePath && f.webkitRelativePath.includes("/")) {
       setError("Folders are not allowed. Please select a single file.");
@@ -128,7 +130,7 @@ export default function App() {
 
     e.dataTransfer.clearData();
   }
-  
+
   function onDragOver(e) {
     e.preventDefault();
   }
@@ -241,7 +243,11 @@ export default function App() {
               type="file"
               ref={fileInputRef}
               style={{ display: "none" }}
-              onChange={(e) => handleFile(e.target.files?.[0])}
+              onChange={(e) => {
+                const f = e.target.files?.[0];
+                handleFile(f);
+                e.target.value = null; // allows selecting the same file again later
+              }}
             />
           </div>
 
