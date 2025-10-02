@@ -1,8 +1,8 @@
-File Sharing App
+#File Sharing App
 
 A simple and efficient file sharing application built with the MERN stack, allowing users to upload files and instantly share them via generated links. Files are securely stored using Backblaze B2, and Multer is used to handle uploads.
 
-Features
+--Features--
 
 Upload files quickly and securely.
 
@@ -12,7 +12,7 @@ Seamless cloud storage integration with Backblaze B2.
 
 Built with modern technologies: MERN stack.
 
-Tech Stack
+--Tech Stack--
 
 Frontend: React
 
