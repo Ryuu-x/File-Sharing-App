@@ -30,7 +30,7 @@ async function authorizeB2() {
     console.error("authorize() returned incomplete data:", auth.data);
     throw new Error("B2 authorize() did not return apiUrl/downloadUrl");
   }
-  return auth.data; // contains apiUrl, downloadUrl, s3ApiUrl, authorizationToken, etc.
+  return auth.data; 
 }
 
 export const uploadImage = async (req, res) => {
@@ -93,7 +93,8 @@ export const uploadImage = async (req, res) => {
     });
 
     // For private buckets generate temporary download authorization token
-    const validSeconds = 60 * 60; // 1 hour
+    const validSeconds = 60 * 10; // 10 min
+
     const dlAuth = await b2.getDownloadAuthorization({
       bucketId: B2_BUCKET_ID,
       fileNamePrefix: fileName,

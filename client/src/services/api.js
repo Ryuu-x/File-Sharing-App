@@ -1,12 +1,31 @@
-import axios from "axios"
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
-const API_URL = 'http://localhost:8000'
+const API_URL = "http://localhost:8000";
 
 export const uploadFile = async (data) => {
-    try {
-        let response = await axios.post(`${API_URL}/upload`, data);
-        return response.data;
-    } catch (error) {
-        console.error('Error while calling the api: ', error.message);
+  try {
+    const response = await axios.post(`${API_URL}/upload`, data);
+    return response.data;
+  } catch (err) {
+    // Handle rate limit errors (429)
+    if (err.response?.status === 429) {
+      const retryAfter = err.response.headers["retry-after"];
+      const retrySec = retryAfter
+        ? Number(retryAfter)
+        : err.response.data?.retryAfterSeconds || 3600; // fallback to 1 hour
+
+      const minutes = Math.ceil(retrySec / 60);
+      const message =
+        err.response.data?.error ||
+        "You’ve hit the upload limit. Please try again later.";
+
+      toast.error(`${message} Try again in about ${minutes} minute${minutes > 1 ? "s" : ""}.`);
+      return null; // optional: prevent further logic
     }
-}
+
+    // Handle other errors
+    toast.error("Something went wrong while uploading. Please try again.");
+    console.error("Upload error:", err);
+  }
+};

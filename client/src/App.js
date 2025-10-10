@@ -330,8 +330,6 @@ export default function App() {
               </div>
 
               <div className="share-note">
-                Tip: create a short URL or set an expiry on the backend for
-                better privacy.
               </div>
             </div>
           )}
