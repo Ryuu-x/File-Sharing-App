@@ -10,7 +10,7 @@ export default function App() {
   const [progress, setProgress] = useState(null); // null = idle, 0-100 = progress, -1 = indeterminate
   const fileInputRef = useRef();
 
-  const MAX_SIZE = 200 * 1024 * 1024; // 200MB example limit
+  const MAX_SIZE = 20 * 1024 * 1024; // 20MB example limit
 
   // handle file selected (from input or drop)
   const handleFile = (f) => {
@@ -220,7 +220,7 @@ export default function App() {
               <strong>
                 {uploading ? "Uploading..." : "Drag & drop a file here"}
               </strong>
-              <span className="muted">or click to browse — max 200 MB</span>
+              <span className="muted">or click to browse — max 20 MB</span>
             </div>
           </div>
 

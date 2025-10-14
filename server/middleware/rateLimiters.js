@@ -5,7 +5,6 @@ const keyGenerator = (req, res) => {
   return req.ip;
 };
 
-// Custom handler to send proper response
 const rateLimitHandler = (req, res, next, options) => {
   return res.status(options.statusCode || 429).json({
     error: options.message || "Too many requests. Please try again later.",

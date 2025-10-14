@@ -1,11 +1,12 @@
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-const API_URL = "http://localhost:8000";
-
 export const uploadFile = async (data) => {
   try {
-    const response = await axios.post(`${API_URL}/upload`, data);
+    const response = await axios.post(
+      `${process.env.REACT_APP_API_URL}/upload`,
+      data
+    );
     return response.data;
   } catch (err) {
     // Handle rate limit errors (429)
@@ -20,7 +21,11 @@ export const uploadFile = async (data) => {
         err.response.data?.error ||
         "You’ve hit the upload limit. Please try again later.";
 
-      toast.error(`${message} Try again in about ${minutes} minute${minutes > 1 ? "s" : ""}.`);
+      toast.error(
+        `${message} Try again in about ${minutes} minute${
+          minutes > 1 ? "s" : ""
+        }.`
+      );
       return null; // optional: prevent further logic
     }
 
