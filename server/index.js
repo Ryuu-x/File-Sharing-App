@@ -11,7 +11,7 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: [process.env.cors],
+    origin: [process.env.CORS],
     exposedHeaders: ["Retry-After", "RateLimit-Limit", "RateLimit-Remaining"],
   })
 );
