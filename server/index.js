@@ -5,13 +5,13 @@ import DBConnection from "./database/db.js";
 import dotenv from "dotenv";
 
 const app = express();
-const PORT = 8000;
+const port = process.env.PORT || 8000;
 
 dotenv.config();
 
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
+    origin: [process.env.cors],
     exposedHeaders: ["Retry-After", "RateLimit-Limit", "RateLimit-Remaining"],
   })
 );
@@ -19,6 +19,4 @@ app.use("/", router);
 
 DBConnection();
 
-app.listen(PORT, () => {
-  console.log(`Server is running on ${PORT}`);
-});
+app.listen(port, () => console.log(`Listening on ${port}`));
